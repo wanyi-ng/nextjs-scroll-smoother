@@ -1,113 +1,75 @@
-import Image from 'next/image'
+'use client'
+
+import { useRef } from "react"
+import { gsap } from "gsap-trial"
+import { ScrollTrigger } from "gsap-trial/ScrollTrigger"
+
+import useIsomorphicEffect from "@/helpers/isomorphicEffect"
 
 export default function Home() {
+  const container = useRef()
+
+  useIsomorphicEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: '.box-c',
+        pin: true,
+        start: 'center center',
+        end: '+=300',
+        markers: true,
+      });
+    }, container)
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    // .home
+    <main 
+      ref={container} 
+      className="relative w-full min-h-[4000px] overflow-visible border-2 border-dashed border-white-500" 
+      style={{
+        backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.07) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 2px, transparent 2px), linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px)",
+        backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px", backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+    }}>
+      {/* .header */}
+      <div className="p-24 text-center bg-blue-400">
+        {/* .title */}
+        <h1>ScrollSmoother NextJS App Folder</h1>
+        <p>Simple example for setting up GSAP ScrollSmoother in a NextJS App using the the experimental App folder</p>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="hidden">
+        <section className="w-[100vw] h-[100vh] will-change-transform grid grid-cols-12 gap-8">
+          <div className="col-span-12 bg-purple-500 md:col-span-6">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget metus fermentum, rhoncus orci vitae, ullamcorper felis. Phasellus pharetra erat at ipsum varius, sed finibus diam bibendum. Nulla sed leo at augue ullamcorper placerat sed eu dui. Curabitur fermentum laoreet lectus id blandit. Etiam dolor mauris, imperdiet ac velit id, malesuada fermentum eros. Vivamus suscipit, libero non vestibulum malesuada, nunc dui hendrerit sem, feugiat lacinia sem lectus id neque. Sed augue turpis, varius eget augue sed, rutrum accumsan lectus.</p>
+            <p>Ut accumsan volutpat turpis vel semper. Duis erat arcu, cursus non lorem vitae, tempus aliquet ante. Cras finibus arcu ac felis rutrum hendrerit. In hac habitasse platea dictumst. Ut non pretium felis. Nullam sed purus leo. Etiam in congue erat. Phasellus gravida nulla id velit consectetur dapibus. Cras lorem neque, ullamcorper in aliquam dictum, luctus in arcu. Nam nec orci at nibh ullamcorper vulputate et a diam. Aenean congue luctus porta. Nam interdum ullamcorper sodales. Aliquam tincidunt tempor mi ut consequat. Vivamus pharetra nibh quis mattis porta. Curabitur posuere malesuada nulla, ac dignissim massa posuere ut. Nam ut sodales magna, a mattis risus. </p>
+            <p>Pellentesque id libero dui. Mauris dapibus nisi elit, et mattis augue suscipit et. Vivamus venenatis at nibh ac vestibulum. Nunc fermentum arcu sollicitudin sem mollis lobortis. Sed fringilla facilisis diam consectetur facilisis. Nam vitae molestie ligula, sit amet rhoncus tellus. Quisque ullamcorper justo libero, vitae pretium enim facilisis vel. Mauris congue tincidunt magna faucibus euismod. Pellentesque sodales euismod velit et pretium. Sed lacinia eget massa non tempus. Vestibulum blandit in orci sit amet consectetur. Etiam quam urna, pretium ut elementum eu, accumsan vel dui. </p>
+          </div>
+          <div className="col-span-12 bg-orange-400 md:col-span-6">
+            <p> Nunc rutrum ut justo in ultricies. Suspendisse odio est, laoreet a leo eu, ultricies lobortis odio. Nullam ut ultricies orci, vel feugiat nunc. Pellentesque sollicitudin, mauris nec tempor mollis, magna arcu sagittis lectus, nec malesuada nisl orci non ligula. Suspendisse placerat magna tortor, ut commodo nisi blandit a. In rhoncus nisi lorem, at consectetur lectus ullamcorper sit amet. Aenean ornare maximus convallis. Etiam dignissim efficitur euismod. Ut blandit gravida risus, nec euismod erat ultricies sed.</p>
+            <p> Maecenas maximus ut enim eget cursus. Phasellus condimentum tristique diam, ultricies ultrices erat tristique quis. Curabitur non erat eget felis vestibulum egestas rutrum quis purus. Maecenas eget orci ac augue rutrum tincidunt et sit amet sem. In lobortis congue faucibus. Vestibulum varius nisi quis lacus pretium faucibus. Integer ut dui porttitor, venenatis quam vitae, sollicitudin risus. Maecenas laoreet, lorem id imperdiet cursus, dui metus hendrerit ligula, et placerat augue lacus et est. Phasellus nec justo rutrum ex vestibulum aliquet quis eu quam. Maecenas viverra felis vitae malesuada hendrerit. Fusce lectus orci, lacinia sit amet felis eu, mattis scelerisque mauris. Cras tempus, dolor sed aliquet tincidunt, purus urna tempus risus, non tempus velit libero a nulla. Quisque ut tristique justo. Vivamus eleifend turpis vel congue vulputate.</p>
+            <p> Maecenas in luctus orci, ac sollicitudin leo. Suspendisse vel elit non libero pharetra tempus. Pellentesque dapibus sagittis nunc, at interdum dui tempus quis. Aenean eleifend fringilla eros non porta. Sed sit amet tincidunt ante. Curabitur facilisis enim ac purus posuere, vulputate facilisis tortor suscipit. Proin tellus mi, efficitur ac consequat eget, fringilla id magna. Morbi mauris erat, vehicula quis gravida eleifend, ullamcorper a purus. Duis sed ante nulla. Proin pharetra augue a nisi vehicula tristique.</p>
+          </div>
+        </section>
       </div>
+      <section className="w-24 h-24 absolute left-1/2 -translate-x-1/2 z-10 will-change-transform box-a top-[200px] bg-[#8d3dae] text-center" data-speed="0.5">
+        <p className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">a</p>
+      </section>
+      <section className="w-24 h-24 absolute left-1/2 -translate-x-1/2 z-10 will-change-transform box-b bg-[#28a92b] top-[600px] text-center" data-speed="0.8">
+        <p className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">b</p>
+      </section>
+      <section className="w-24 h-24 absolute left-1/2 -translate-x-1/2 z-10 will-change-transform box-c bg-[#e26c16] top-[1000px] text-center" data-speed="1.5">
+        <p className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">c</p>
+      </section>
+      <section className="hidden w-24 h-24 absolute left-1/2 -translate-x-1/2 z-10 will-change-transform box-c bg-blue-400 top-[2000px] text-center" data-speed="1.5">
+        <p className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">c</p>
+      </section>
+      
+      <section className="w-full h-[500px] absolute top-[1600px] bg-teal-500" />
+      <section className="w-full h-[500px] bg-rose-500 absolute top-[2400px]" />
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* .line */}
+      <div className="hidden w-1 h-[4000px] absolute left-[400px] top-0 bg-[#777]"></div>
     </main>
   )
 }
