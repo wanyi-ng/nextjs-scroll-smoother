@@ -25,9 +25,9 @@ export default function Home() {
 
   return (
     // .home
-    <main 
+    <div 
       ref={container} 
-      className="relative w-full min-h-[4000px] overflow-visible border-2 border-dashed border-white-500" 
+      className="relative w-full min-h-[4000px] overflow-visible border-2 border-dashed border-white-500 my-16" 
       style={{
         backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.07) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 2px, transparent 2px), linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px)",
         backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px", backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
@@ -70,6 +70,6 @@ export default function Home() {
 
       {/* .line */}
       <div className="hidden w-1 h-[4000px] absolute left-[400px] top-0 bg-[#777]"></div>
-    </main>
+    </div>
   )
 }

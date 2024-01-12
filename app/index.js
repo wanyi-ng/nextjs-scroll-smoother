@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap-trial'
 import { ScrollTrigger } from 'gsap-trial/ScrollTrigger'
 import { ScrollSmoother } from 'gsap-trial/ScrollSmoother'
-
+import Navbar from './_components/Navbar'
 import useIsomorphicEffect from "@/helpers/isomorphicEffect"
 
 export default function ScrollSmootherComponent({ children }) {
@@ -28,10 +28,13 @@ export default function ScrollSmootherComponent({ children }) {
   }, [pathname])
 
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
-        {children}
+    <main className="relative min-h-screen">
+      <Navbar />
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          {children}
+        </div>
       </div>
-    </div>
+    </main>
   )
 }
